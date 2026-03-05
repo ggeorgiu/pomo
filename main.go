@@ -4,9 +4,10 @@ import (
 	"log/slog"
 	"os"
 	"os/signal"
-	"pomo/cursor"
-	"pomo/screen"
 	"syscall"
+
+	"github.com/ggeorgiu/pomo/cursor"
+	"github.com/ggeorgiu/pomo/screen"
 )
 
 func main() {

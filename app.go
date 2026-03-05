@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
-	"pomo/cursor"
-	"pomo/screen"
 	"strconv"
 
 	_ "embed"
 
 	"github.com/gen2brain/beeep"
+	"github.com/ggeorgiu/pomo/cursor"
+	"github.com/ggeorgiu/pomo/screen"
 )
 
 //go:embed icons/beep_fitness.png

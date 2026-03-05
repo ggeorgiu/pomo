@@ -2,9 +2,10 @@ package screen
 
 import (
 	"fmt"
-	"pomo/color"
 
 	"golang.org/x/term"
+
+	"github.com/ggeorgiu/pomo/color"
 )
 
 const bar = "\u275A"
