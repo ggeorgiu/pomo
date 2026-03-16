@@ -18,11 +18,10 @@ func main() {
 	signal.Notify(c, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
 	go func() {
 		<-c
-
-		cursor.MoveToLineStart()
 		screen.Print("Interrupted.")
-
+		cursor.MoveToLineStart()
 		release()
+	
 		os.Exit(0)
 	}()
 

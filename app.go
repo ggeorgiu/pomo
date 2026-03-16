@@ -1,8 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
+	"strings"
+	"unicode"
 
 	_ "embed"
 
@@ -28,15 +29,10 @@ func run(args []string) error {
 	defer screen.Wrap()
 
 	var seconds = 10
-	if len(args[1]) != 0 {
-		val, err := strconv.Atoi(args[1])
-		if err != nil {
-			return fmt.Errorf("parse args(0), err: %w", err)
-		}
-
-		seconds = val
-
+	if len(args[1]) > 0 {
+		seconds = parse(args[1])
 	}
+
 	s, err := screen.New()
 	if err != nil {
 		return err
@@ -55,4 +51,32 @@ func run(args []string) error {
 	}
 
 	return nil
+}
+
+func parse(duration string) int {
+	if unicode.IsDigit(rune(duration[len(duration)-1])) {
+		val, err := strconv.Atoi(duration)
+		if err != nil {
+			panic(err)
+		}
+
+		return val
+	}
+
+	var multiplier int
+	switch {
+	case strings.HasSuffix(duration, "s"):
+		multiplier = 1
+	case strings.HasSuffix(duration, "m"):
+		multiplier = 60
+	default:
+		multiplier = 1
+	}
+
+	val, err := strconv.Atoi(duration[:len(duration)-1])
+	if err != nil {
+		panic(err)
+	}
+
+	return val * multiplier
 }
