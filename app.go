@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"strconv"
 	"strings"
 	"unicode"
@@ -23,6 +24,12 @@ func setup() (release func()) {
 	}
 
 	return release
+}
+
+func stop() {
+	cursor.MoveToLineStart()
+	screen.Print("Interrupted.")
+	os.Exit(0)
 }
 
 func run(args []string) error {

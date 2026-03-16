@@ -5,9 +5,6 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-
-	"github.com/ggeorgiu/pomo/cursor"
-	"github.com/ggeorgiu/pomo/screen"
 )
 
 func main() {
@@ -18,11 +15,9 @@ func main() {
 	signal.Notify(c, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
 	go func() {
 		<-c
-		screen.Print("Interrupted.")
-		cursor.MoveToLineStart()
+
 		release()
-	
-		os.Exit(0)
+		stop()
 	}()
 
 	if err := run(os.Args); err != nil {
