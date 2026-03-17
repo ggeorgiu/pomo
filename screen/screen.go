@@ -48,7 +48,7 @@ func (s *Screen) Update(progress float32) {
 		fmt.Print(color.Cyan, ".", color.Reset)
 	}
 	fmt.Print(" ]")
-	fmt.Print("[ ", progress, "% ]")
+	fmt.Print(fmt.Sprintf("[ %.2f%% ]", progress))
 }
 
 func Print(text string) {
