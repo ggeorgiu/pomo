@@ -40,6 +40,7 @@ func (s *Screen) Init() {
 func (s *Screen) Update(progress float32) {
 	fmt.Print("\r")
 	fmt.Print("[ ")
+
 	for i := 0; i < s.barLen; i++ {
 		if float32(i) <= s.ratio*progress-1 {
 			fmt.Print(color.Green, bar, color.Reset)
@@ -47,6 +48,15 @@ func (s *Screen) Update(progress float32) {
 		}
 		fmt.Print(color.Cyan, ".", color.Reset)
 	}
+
+	if progress >= 100.00 {
+		fmt.Print("\r")
+		fmt.Print("[ ")
+		for i := 0; i < s.barLen; i++ {
+			fmt.Print(color.Green, bar, color.Reset)
+		}
+	}
+
 	fmt.Print(" ]")
 	fmt.Print(fmt.Sprintf("[ %.2f%% ]", progress))
 }
